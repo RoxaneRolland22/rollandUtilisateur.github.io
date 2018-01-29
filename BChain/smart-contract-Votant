@@ -1,4 +1,3 @@
-// TD_2 Smart Contract du systeme de vote Election presidentiel 
 pragma solidity ^0.4.0;
 
 contract vote
@@ -23,7 +22,7 @@ contract vote
         owner=msg.sender;
     }
     
-    function ajout_votants() public {
+    function ajout_votants() public  {
         votants[msg.sender]=1;
         
     }
@@ -38,7 +37,7 @@ contract vote
         }
         else
         {
-            "rentres chez ta maman ";
+            //"rentres chez ta maman ";
         }
     }
     
