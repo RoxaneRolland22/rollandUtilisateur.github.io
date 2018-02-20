@@ -2,4 +2,49 @@
 // Creation d'un token, adress : 0x78fe4294508504de414c6eb2f6b5c6b6597610ad
 // Lien : https://ropsten.etherscan.io/address/0x78fe4294508504de414c6eb2f6b5c6b6597610ad
 
-// Redaction du Smart-contract de vente 
+contract sic {
+        // Variables 
+    address public owner;
+    mapping (address => uint) public investisseurs; // Statut des utilisateurs 
+    mapping (address => uint) public emprunteurs; // Statut des utilisateurs 
+    mapping (adress => uint) public montantInvesti; // Cumul des investissements depuis le deb
+    mapping (adress => uint) public montantEmprunte; // Cumul des credit depuis le deb 
+    
+    modifier isowner(){
+        if(msg.sender!=owner){
+            throw;}
+            _;
+    }
+    function Second(){
+        owner = msg.sender;
+    }
+
+    function ajout_investisseurs() public {
+        investisseurs[msg.sender]=0; // mettre le nbre de token qu'il achete
+        montantInvesti[msg.sender]=investisseurs[msg.sender]; 
+    }
+    function ajout_empruteurs() public{
+        emprunteurs[msg.sender]=0; // Mettre montant souhaité 
+        montantEmprunte[msg.sender]=0; // Montant reçu par les investisseurs 
+    }
+
+    function Transfer(address _to, uint256 _value) public returns (bool success){
+        require(investisseurs[msg.sender] >= _value);
+        investisseurs[msg.sender] -= _value;
+        emprunteurs [_to] += _value;
+       // Transfer(msg.sender, _to , _value);
+        return true;
+    }
+
+    function montantEmprunteurs(address _owner) public view returns (uint256 emprunter){
+        return emprunteurs[_owner];
+    }
+    function montantInvestisseurs(address _owner) public view returns (uint256 investisseur){
+        return investisseurs[_owner];
+    }
+
+    function kill() isowner (){
+        delete owner;
+        selfdestruct(msg.sender);
+    }
+}
