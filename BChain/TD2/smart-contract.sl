@@ -56,6 +56,7 @@ contract RRCN is EIP20Interface {
     uint256 constant private MAX_UINT256 = 2**256 - 1;
     mapping (address => uint256) public balances;
     mapping (address => mapping (address => uint256)) public allowed;
+    address owner;
     /*
     NOTE:
     The following variables are OPTIONAL vanities. One does not have to include them.
@@ -122,7 +123,7 @@ contract RRCN is EIP20Interface {
         return allowed[_owner][_spender];
     }   
     function kill() isowner(){
-        delete isowner;
+        delete owner;
         selfdestruct(msg.sender);
     }
     
