@@ -1,3 +1,6 @@
+// Adresse du Smart Contract : 0x5ee8be010928795e8e727306c9e49ded9665d042
+// Code du Smart Contract 
+
 pragma solidity ^0.4.0;
 
 contract vote
@@ -22,14 +25,15 @@ contract vote
         owner=msg.sender;
     }
     
-    function ajout_votants() public  {
+    function ajout_votants() public {
         votants[msg.sender]=1;
-        
     }
+    
     function ajout_candidats() public {
         candidats[msg.sender]=0;
     }
-    function voter(address address_candidat){
+    
+    function voter(address address_candidat) public{
         if (votants[msg.sender]==1)
         {
         candidats[address_candidat]+=1;
@@ -37,10 +41,21 @@ contract vote
         }
         else
         {
-            //"rentres chez ta maman ";
+            "Vous avez déjà voter ";
         }
     }
     
+    function procuration(address address_candidat_pro) public{
+        if (votants[msg.sender] == 1)
+        {
+            votants[address_candidat_pro] += 1;
+            votants[msg.sender] -= 1;
+        }
+        else
+        {
+            "Vous avez déjà voter !";
+        }
+    }
     //Functions
     function kill() isowner (){
         delete owner;
