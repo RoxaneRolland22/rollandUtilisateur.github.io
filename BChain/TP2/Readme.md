@@ -8,3 +8,5 @@ Adress Token :  0xa69edb63afa6ac1f12788915cc577fd5f2dcf75b.
 
 Token Balance : 100 000 000 RRCN.
 
+1 Ether correspond à 500 RRCN
+
