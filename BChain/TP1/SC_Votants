@@ -1,0 +1,49 @@
+pragma solidity ^0.4.0;
+
+contract vote
+{
+    
+    //variable
+    address public owner;
+   mapping(address => uint) public votants;
+   mapping(address => uint) public candidats;
+   
+    //Modifier et event
+    modifier isowner(){
+        if(msg.sender!=owner){
+            throw;
+            _;
+        }
+    
+    }
+
+    //Constructeur
+    function vote() public {
+        owner=msg.sender;
+    }
+    
+    function ajout_votants() public  {
+        votants[msg.sender]=1;
+        
+    }
+    function ajout_candidats() public {
+        candidats[msg.sender]=0;
+    }
+    function voter(address address_candidat){
+        if (votants[msg.sender]==1)
+        {
+        candidats[address_candidat]+=1;
+        votants[msg.sender]--;
+        }
+        else
+        {
+            //"rentres chez ta maman ";
+        }
+    }
+    
+    //Functions
+    function kill() isowner (){
+        delete owner;
+        selfdestruct(msg.sender);
+    }
+}
