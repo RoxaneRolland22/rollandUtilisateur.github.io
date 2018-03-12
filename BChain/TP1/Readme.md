@@ -18,4 +18,5 @@ Questions :
 - La fonction "Procuration" ajoute un droit de vote à un votant et retire la possibilité de voter à celui qui donne la procuration.
 - Le mapping assure que chaque votant vote qu'une fois. 
             
+ Conclusion : Le systeme de vote fonctionne _ TP 1 est fini 
   
